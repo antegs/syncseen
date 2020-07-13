@@ -1,5 +1,6 @@
 import requests
 import ast
+import re
 import sys
 from argparse import ArgumentParser
 
@@ -152,6 +153,7 @@ def process(calltype, callhost, callkey):
 
                             if not args.stats:
                                 itempath = itemdb['Path']
+                                itempath = re.sub("^smb://.*?/", "/", itempath)
                                 itempathbefore = itempath
                                 for path in pathsdb:
                                     if itempath.startswith(path) and itempath[len(path):len(path)+1] == "/":
